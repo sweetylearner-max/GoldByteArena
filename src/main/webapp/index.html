@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GoldByte Arena | Learn to code, climb the ladder</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="index.html"><span class="brand-mark">G</span>GoldByte Arena</a>
+    <a class="link" href="index.html">Home</a>
+    <a class="link" href="missions">Missions</a>
+    <a class="link" href="leaderboard">Leaderboard</a>
+    <a class="link" href="register.jsp">Register</a>
+    <a class="link" href="login.jsp">Log in</a>
+    <a class="link" href="admin-login.jsp">Admin</a>
+    <button class="sound" id="soundBtn" type="button" onclick="Sfx.toggle()">Sound on</button>
+  </div>
+</header>
+<main>
+  <section class="hero">
+    <div>
+      <h1>Solve Java, SQL and DSA missions. Climb from Bronze to Golden Overlord.</h1>
+      <p class="lead">Every mission is a multiple-choice challenge with one attempt. Get it right to earn XP, keep your daily streak alive, and see your name rise on the leaderboard.</p>
+      <div class="cta">
+        <a class="btn" href="register.jsp">Create your account</a>
+        <a class="btn ghost" href="login.jsp">Log in</a>
+        <a class="btn violet" href="leaderboard">See the rankings</a>
+      </div>
+    </div>
+    <ol class="ladder" aria-label="Rank titles">
+      <li><strong>Bronze Initiate</strong><small>Level 1</small></li>
+      <li><strong>Silver Scripter</strong><small>Levels 2 to 3</small></li>
+      <li><strong>Gold Operator</strong><small>Levels 4 to 5</small></li>
+      <li><strong>Amethyst Architect</strong><small>Levels 6 to 7</small></li>
+      <li><strong>Golden Overlord</strong><small>Level 8 and above</small></li>
+    </ol>
+  </section>
+
+  <section class="rules grid cols-4">
+    <div class="panel"><h3>One attempt</h3><p class="muted">Each mission can be answered once, so read carefully before you commit.</p></div>
+    <div class="panel"><h3>Harder pays more</h3><p class="muted">Easy missions pay base XP, Medium pays 1.5 times, Hard pays double.</p></div>
+    <div class="panel"><h3>100 XP per level</h3><p class="muted">Your level is 1 plus your total XP divided by 100, rounded down.</p></div>
+    <div class="panel"><h3>Daily streak</h3><p class="muted">Solve at least one mission on consecutive days to build a streak.</p></div>
+  </section>
+</main>
+<footer>GoldByte Arena &middot; JSP, Servlets and JDBC on Tomcat 10.1 with MySQL 8</footer>
+<script src="js/audio-fx.js"></script>
+</body>
+</html>

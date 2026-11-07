@@ -115,22 +115,60 @@ The admin login page is available at `/admin-login.jsp`.
 
 ```
 GoldByteArena/
+├── pom.xml                                  # Maven configuration (Jakarta Servlet 6.0, MySQL connector)
+├── Dockerfile                               # Multi-stage build: Maven build, then Tomcat 10.1 runtime
+├── docker-compose.yml                       # Application and MySQL services for one-command startup
 ├── database/
-│   └── goldbyte_db.sql          # Schema and sample data
-├── src/main/
-│   ├── java/com/goldbyte/arena/
-│   │   ├── config/              # DBConnection, Html helper
-│   │   ├── dao/                 # UserDAO, AdminDAO, MissionDAO, SubmissionDAO
-│   │   ├── filters/             # AuthFilter
-│   │   ├── models/              # User, Mission, LeaderboardEntry
-│   │   └── servlets/            # Register, Login, Logout, Admin*, Mission, Submit, ...
-│   └── webapp/
-│       ├── css/  js/  includes/
-│       ├── WEB-INF/web.xml
-│       └── *.jsp, index.html
-├── Dockerfile
-├── docker-compose.yml
-└── pom.xml
+│   └── goldbyte_db.sql                      # Complete MySQL schema and sample data
+├── src/main/java/com/goldbyte/arena/
+│   ├── config/
+│   │   ├── DBConnection.java                # Centralized JDBC connection and SHA-256 hashing
+│   │   └── Html.java                        # HTML escaping helper
+│   ├── filters/
+│   │   └── AuthFilter.java                  # Separate student and admin access control
+│   ├── models/
+│   │   ├── User.java                        # Student profile, level and title calculation
+│   │   ├── Mission.java                     # Question model (Java, SQL, DSA)
+│   │   └── LeaderboardEntry.java            # Ranked leaderboard entry
+│   ├── dao/
+│   │   ├── UserDAO.java                     # Registration, authentication and student stats
+│   │   ├── AdminDAO.java                    # Administrator authentication
+│   │   ├── MissionDAO.java                  # Question querying and insertion
+│   │   └── SubmissionDAO.java               # Transactional submission and leaderboard queries
+│   └── servlets/
+│       ├── RegisterServlet.java             # Student registration (/register)
+│       ├── LoginServlet.java                # Student login and cookie (/login)
+│       ├── LogoutServlet.java               # Session invalidation (/logout)
+│       ├── DashboardServlet.java            # Personal progress statistics (/dashboard)
+│       ├── MissionServlet.java              # Question retrieval and filters (/missions)
+│       ├── SubmitAnswerServlet.java         # Answer evaluation and XP update (/submit-answer)
+│       ├── LeaderboardServlet.java          # Global ranking (/leaderboard)
+│       ├── AdminLoginServlet.java           # Admin login (/admin-login)
+│       ├── AdminLogoutServlet.java          # Admin session logout (/admin-logout)
+│       ├── AddQuestionServlet.java          # Question creation (/admin/add-question)
+│       └── ViewQuestionsServlet.java        # Question catalog (/admin/view-questions)
+└── src/main/webapp/
+    ├── css/
+    │   └── style.css                        # Dark gaming theme shared by all pages
+    ├── js/
+    │   ├── audio-fx.js                      # Sound effects (Web Audio API) with on/off toggle
+    │   └── confetti.js                      # Canvas confetti celebration
+    ├── includes/
+    │   ├── navbar.jsp                       # Navigation bar with session detection
+    │   └── footer.jsp                       # Common footer and script includes
+    ├── index.html                           # Home page (Module 1)
+    ├── register.jsp                         # Student registration form (Module 2)
+    ├── login.jsp                            # Student login form (Module 3)
+    ├── admin-login.jsp                      # Administrator login (Module 4)
+    ├── admin-dashboard.jsp                  # Administrator dashboard (Module 4)
+    ├── add-question.jsp                     # Question creation form (Module 6)
+    ├── view-questions.jsp                   # Question management table (Module 7)
+    ├── dashboard.jsp                        # Student dashboard (Module 8)
+    ├── missions.jsp                         # Missions by category and difficulty (Module 9)
+    ├── mission-result.jsp                   # Instant feedback and level-up alert (Module 10)
+    ├── leaderboard.jsp                      # Podium and rankings (Module 11)
+    └── WEB-INF/
+        └── web.xml                          # Servlet mapping, context-param and init-param
 ```
 
 ---
